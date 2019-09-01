@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.css";
 
-// import { recipes } from "./tempList";
+import { recipes } from "./tempList";
 import RecipeList from "./components/RecipeList";
 import RecipeDetails from "./components/RecipeDetails";
 
 class App extends React.Component {
   state = {
-    recipes: [],
+    recipes: recipes,
     url:
       "https://www.food2fork.com/api/search?key=53dcfb9b58f3c27ab267737358d6bd07",
     baseURl:
       "https://www.food2fork.com/api/search?key=53dcfb9b58f3c27ab267737358d6bd07",
-    details_id: 35386,
+    details_id: 35384,
     pageIndex: 1,
     search: "",
     query: "&q=",
@@ -23,7 +23,7 @@ class App extends React.Component {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
-      console.log(jsonData);
+      // console.log(jsonData);
 
       if (jsonData.recipes.length === 0) {
         this.setState(() => {

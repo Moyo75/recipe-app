@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-// import { recipe } from "../tempDetails";
+import { recipe } from "../tempDetails";
 
 export default class RecipeDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      recipe: [],
-      url: `https://www.food2fork.com/api/get?key=53dcfb9b58f3c27ab267737358d6bd07=${this.props.id}`
+      recipe: recipe,
+      url: `https://cors-anywhere.herokuapp.com/https://www.food2fork.com/api/get?key=53dcfb9b58f3c27ab267737358d6bd07&rId=${this.props.id}`
     };
   }
 
@@ -15,6 +15,7 @@ export default class RecipeDetails extends Component {
     try {
       const data = await fetch(this.state.url);
       const jsonData = await data.json();
+      console.log(jsonData);
 
       this.setState({
         recipe: jsonData.recipe
@@ -25,7 +26,7 @@ export default class RecipeDetails extends Component {
   }
 
   render() {
-    // console.log(this.state.recipe);
+    console.log(this.state.recipe.ingredients);
 
     const {
       image_url,
